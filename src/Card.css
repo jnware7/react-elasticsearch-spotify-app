@@ -1,0 +1,23 @@
+.card{
+  align-content: center;
+  font-size: .5em;
+  width: 30%;
+  margin-top: 1.5%;
+}
+.card-container{
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+ width: 100%;
+}
+.card-image{
+  height: 30%;
+}
+.card-artist{
+ font-weight: bold;
+ text-align: center;
+}
+.card-song{
+ font-weight: lighter;
+  text-align: center;
+}
