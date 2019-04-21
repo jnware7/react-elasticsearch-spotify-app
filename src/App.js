@@ -10,13 +10,16 @@ import Title from "./Title";
 import logo from "./logo.svg";
 require('dotenv').config();
 
-function searchFor(searchString){
-
-    return function(x){
-      return (x.name.toLowerCase()).includes(searchString.toLowerCase() || !searchString);
-    }
-
-}
+// function searchFor(searchString){
+//
+//     return function(x){
+//       return (
+//         (x.name.toLowerCase()).includes(searchString.toLowerCase() || !searchString)||
+//         (x.album.toLowerCase()).includes(searchString.toLowerCase() || !searchString)
+//       );
+//     }
+//
+// }
 
 
 class App extends Component {
@@ -87,6 +90,15 @@ class App extends Component {
 
   render() {
     const {albums, searchString} = this.state;
+    const lowerCasedSearchString = searchString.toLowerCase();
+    const filteredData = albums.filter( album => {
+      return Object.values(album).some( key => {
+        return key.toLowerCase().includes(lowerCasedSearchString);
+      })
+    })
+    // console.log("filteredData==>",filteredData)
+    // console.log("album[ key ]",album[key])
+    // console.log("lowerCasedSearchString",lowerCasedSearchString)
     return (
       <div className="App">
         <header className="App-header">
@@ -113,7 +125,7 @@ class App extends Component {
             <div className="card-container">
             {
               searchString ? (
-                albums.filter(searchFor(searchString)).map( (album, key)=> (
+                filteredData.map( (album, key)=> (
                   <Card
                     key={album.name}
                     name={album.name}
