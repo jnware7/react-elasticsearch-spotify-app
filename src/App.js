@@ -59,7 +59,7 @@ class App extends Component {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },
       success: (data) => {
-        console.log("array", data.albums.items);
+        console.log("Data", JSON.stringify(data.albums.items));
 
         const arrayOfAlbums = data.albums.items;
         let arrayToState = [];
