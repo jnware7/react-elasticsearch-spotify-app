@@ -33,20 +33,20 @@ class App extends Component {
   }
   handleChangeSearch(e) {
   this.setState({searchString: e.target.value});
-   e.preventDefault();
+
   // console.log(this.state.searchString)
   }
-
+handleSubmit(e){
+  e.preventDefault();
+  const options = {};
+  console.log(this.state.searchString, check state)
+  client.search(this.state.searchString, options)
+    .then(resultList => console.log(resultList, "elasticsearch"))
+    .catch(error => console.log(error))
+}
 
 
   componentDidMount() {
-
-    // const query = "tyga";
-    const options = {};
-    client.search(this.state.searchString, options)
-      .then(resultList => console.log(resultList, "elasticsearch"))
-      .catch(error => console.log(error))
-
 
     // Set token
     let _token = hash.access_token;
@@ -123,6 +123,7 @@ class App extends Component {
             <form className="search-container">
               <input
                 type="text"
+                onSubmit={handleSubmit}
                 value={searchString}
                 ref="search"
                 onChange={this.handleChangeSearch}
