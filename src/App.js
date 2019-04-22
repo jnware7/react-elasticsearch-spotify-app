@@ -11,12 +11,18 @@ import Title from "./Title";
 import logo from "./logo.svg";
 require('dotenv').config();
 
-
 const client = SwiftypeAppSearch.createClient({
   hostIdentifier: "host-8ciykn",
   apiKey: "search-xunm9zq9kudg3dihhffgqv66",
   engineName: "spotifynewreleasedalbums"
 });
+
+// We can query for anything -- `foo` is our example.
+const query = "tyga";
+const options = {};
+client.search(query, options)
+  .then(resultList => console.log(resultList, "elasticsearch"))
+  .catch(error => console.log(error))
 
 
 class App extends Component {
@@ -26,7 +32,6 @@ class App extends Component {
       token: null,
       albums:[],
       searchString: '',
-      elasticSearchRes:''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
      this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -39,8 +44,6 @@ class App extends Component {
 
 
   componentDidMount() {
-  //elastic search call
-  this.performQuery(this.state.elasticSearchRes);
     // Set token
     let _token = hash.access_token;
 
@@ -87,38 +90,9 @@ class App extends Component {
   }
 
 
-  // Handles the `onChange` event every time the user types in the search box.
-  updateQuery = e => {
-    const elasticSearchRes = e.target.value;
-    this.setState(
-      {
-        elasticSearchRes // Save the user entered query string
-      },
-      () => {
-        this.performQuery(elasticSearchRes); // Trigger a new search
-      }
-    );
-  };
-
-
-    performQuery = elasticSearchRes => {
-    client.search(elasticSearchRes, {}).then(
-      elasticSearchRes => {
-        this.setState({
-          elasticSearchRes
-        });
-      },
-      error => {
-        console.log(`error: ${error}`);
-      }
-    );
-  };
-
-
-
 
   render() {
-    const {albums, searchString,elasticSearchRes} = this.state;
+    const {albums, searchString} = this.state;
     const lowerCasedSearchString = searchString.toLowerCase();
     const filteredData = albums.filter( album => {
       return Object.values(album).some( key => {
@@ -148,7 +122,6 @@ class App extends Component {
                 value={searchString}
                 ref="search"
                 onChange={this.handleChangeSearch}
-                onChange={this.updateQuery}
                 placeholder="    Search..."
                />
              </form>
@@ -176,18 +149,8 @@ class App extends Component {
                 ))
               )
             }
-             elasticSearchRes.length < 3 ?
-            </div>
-            {/* Show the total count of results for this query */}
 
-        {elasticSearchRes.results.map(result => (
-          <div key={result.getRaw("id")}>
-            <p>Released: {result.getRaw("Release_date")}</p>
-            <a href={result.getRaw("external_urls.raw")}>Listen</a>
-            <br />
-          </div> :
-          null
-        ))}
+            </div>
             </React.Fragment>
           )}
         </header>
@@ -195,14 +158,5 @@ class App extends Component {
     );
   }
 }
-
-
-
-// We can query for anything -- `foo` is our example.
-// const query = 'beyonc'
-// const options = {};
-// client.search(query, options)
-//   .then(resultList => console.log(resultList.rawResults, "elasticsearch"))
-//   .catch(error => console.log(error))
 
 export default App;
