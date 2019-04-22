@@ -18,11 +18,11 @@ const client = SwiftypeAppSearch.createClient({
 });
 
 // We can query for anything -- `foo` is our example.
-const query = "tyga";
-const options = {};
-client.search(query, options)
-  .then(resultList => console.log(resultList, "elasticsearch"))
-  .catch(error => console.log(error))
+// const query = "tyga";
+// const options = {};
+// client.search(query, options)
+//   .then(resultList => console.log(resultList, "elasticsearch"))
+//   .catch(error => console.log(error))
 
 
 class App extends Component {
@@ -44,6 +44,14 @@ class App extends Component {
 
 
   componentDidMount() {
+
+    // const query = "tyga";
+    const options = {};
+    client.search(this.state.searchString, options)
+      .then(resultList => console.log(resultList, "elasticsearch"))
+      .catch(error => console.log(error))
+
+
     // Set token
     let _token = hash.access_token;
 
