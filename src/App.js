@@ -14,7 +14,7 @@ require('dotenv').config();
 const client = SwiftypeAppSearch.createClient({
   hostIdentifier: "host-8ciykn",
   apiKey: "search-xunm9zq9kudg3dihhffgqv66",
-  engineName: "node-modules"
+  engineName: "spotifynewreleasedalbums"
 });
 
 // We can query for anything -- `foo` is our example.
