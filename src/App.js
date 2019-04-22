@@ -26,7 +26,7 @@ class App extends Component {
       token: null,
       albums:[],
       searchString: '',
-      elasticSearchRes:null
+      elasticSearchRes:''
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
      this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -179,7 +179,7 @@ class App extends Component {
              elasticSearchRes ?
             </div>
             {/* Show the total count of results for this query */}
-      
+
         {elasticSearchRes.results.map(result => (
           <div key={result.getRaw("id")}>
             <p>Released: {result.getRaw("Release_date")}</p>
