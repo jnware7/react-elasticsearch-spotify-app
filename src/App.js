@@ -176,7 +176,7 @@ class App extends Component {
                 ))
               )
             }
-             elasticSearchRes ?
+             elasticSearchRes.length < 3 ?
             </div>
             {/* Show the total count of results for this query */}
 
