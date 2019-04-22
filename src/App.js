@@ -18,7 +18,7 @@ const client = SwiftypeAppSearch.createClient({
 });
 
 // We can query for anything -- `foo` is our example.
-const query = "tyga";
+const query = this.state.searchString;
 const options = {};
 client.search(query, options)
   .then(resultList => console.log(resultList, "elasticsearch"))
