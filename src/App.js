@@ -38,15 +38,17 @@ class App extends Component {
   }
 handleSubmit(e){
   e.preventDefault();
-  const options = {};
-  console.log(this.state.searchString, check state)
-  client.search(this.state.searchString, options)
-    .then(resultList => console.log(resultList, "elasticsearch"))
-    .catch(error => console.log(error))
 }
 
 
   componentDidMount() {
+
+    const options = {};
+    console.log(this.state.searchString, check state)
+    client.search(this.state.searchString, options)
+      .then(resultList => console.log(resultList, "elasticsearch"))
+      .catch(error => console.log(error))
+
 
     // Set token
     let _token = hash.access_token;
