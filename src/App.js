@@ -17,12 +17,7 @@ const client = SwiftypeAppSearch.createClient({
   engineName: "spotifynewreleasedalbums"
 });
 
-// We can query for anything -- `foo` is our example.
-// const query = "tyga";
-// const options = {};
-// client.search(query, options)
-//   .then(resultList => console.log(resultList, "elasticsearch"))
-//   .catch(error => console.log(error))
+
 
 
 class App extends Component {
