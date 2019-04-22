@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
 import hash from "./hash";
+import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
 import "./App.css";
 
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
@@ -10,16 +11,18 @@ import Title from "./Title";
 import logo from "./logo.svg";
 require('dotenv').config();
 
-// function searchFor(searchString){
-//
-//     return function(x){
-//       return (
-//         (x.name.toLowerCase()).includes(searchString.toLowerCase() || !searchString)||
-//         (x.album.toLowerCase()).includes(searchString.toLowerCase() || !searchString)
-//       );
-//     }
-//
-// }
+const client = SwiftypeAppSearch.createClient({
+  hostIdentifier: "host-8ciykn",
+  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
+  engineName: "node-modules"
+});
+
+// We can query for anything -- `foo` is our example.
+const query = "tyga";
+const options = {};
+client.search(query, options)
+  .then(resultList => console.log(resultList, "elasticsearch"))
+  .catch(error => console.log(error))
 
 
 class App extends Component {
@@ -35,7 +38,7 @@ class App extends Component {
   }
   handleChangeSearch(e) {
   this.setState({searchString: e.target.value});
-  console.log(this.state.searchString)
+  // console.log(this.state.searchString)
   }
 
 
@@ -62,7 +65,7 @@ class App extends Component {
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },
       success: (data) => {
-        console.log("Data", JSON.stringify(data.albums.items));
+         console.log("DATA", JSON.stringify(data.albums.items));
 
         const arrayOfAlbums = data.albums.items;
         let arrayToState = [];
@@ -74,7 +77,7 @@ class App extends Component {
           arrayToState.push(albumObj);
         })
 
-        console.log(arrayToState);
+        // console.log(arrayToState);
 
         const name = data.albums.items[0].name;
         const artist = data.albums.items[0].artists[0].name;
