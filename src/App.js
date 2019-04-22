@@ -38,6 +38,7 @@ class App extends Component {
   }
   handleChangeSearch(e) {
   this.setState({searchString: e.target.value});
+   e.preventDefault();
   // console.log(this.state.searchString)
   }
 
