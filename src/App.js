@@ -12,6 +12,12 @@ import logo from "./logo.svg";
 require('dotenv').config();
 
 
+const client = SwiftypeAppSearch.createClient({
+  hostIdentifier: "host-8ciykn",
+  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
+  engineName: "spotifynewreleasedalbums"
+});
+
 
 class App extends Component {
   constructor() {
@@ -142,6 +148,7 @@ class App extends Component {
                 value={searchString}
                 ref="search"
                 onChange={this.handleChangeSearch}
+                onChange={this.updateQuery}
                 placeholder="    Search..."
                />
              </form>
@@ -169,7 +176,7 @@ class App extends Component {
                 ))
               )
             }
-
+             elasticSearchRes ?
             </div>
             {/* Show the total count of results for this query */}
         <h2>{elasticSearchRes.info.meta.page.total_results} Results</h2>
@@ -179,7 +186,8 @@ class App extends Component {
             <p>Released: {result.getRaw("Release_date")}</p>
             <a href={result.getRaw("external_urls.raw")}>Listen</a>
             <br />
-          </div>
+          </div> :
+          null
         ))}
             </React.Fragment>
           )}
@@ -189,17 +197,13 @@ class App extends Component {
   }
 }
 
-const client = SwiftypeAppSearch.createClient({
-  hostIdentifier: "host-8ciykn",
-  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
-  engineName: "spotifynewreleasedalbums"
-});
+
 
 // We can query for anything -- `foo` is our example.
-const query = 'beyonc'
-const options = {};
-client.search(query, options)
-  .then(resultList => console.log(resultList.rawResults, "elasticsearch"))
-  .catch(error => console.log(error))
+// const query = 'beyonc'
+// const options = {};
+// client.search(query, options)
+//   .then(resultList => console.log(resultList.rawResults, "elasticsearch"))
+//   .catch(error => console.log(error))
 
 export default App;
