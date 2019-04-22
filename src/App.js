@@ -11,18 +11,6 @@ import Title from "./Title";
 import logo from "./logo.svg";
 require('dotenv').config();
 
-const client = SwiftypeAppSearch.createClient({
-  hostIdentifier: "host-8ciykn",
-  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
-  engineName: "spotifynewreleasedalbums"
-});
-
-// We can query for anything -- `foo` is our example.
-const query = this.state.searchString;
-const options = {};
-client.search(query, options)
-  .then(resultList => console.log(resultList, "elasticsearch"))
-  .catch(error => console.log(error))
 
 
 class App extends Component {
@@ -158,5 +146,18 @@ class App extends Component {
     );
   }
 }
+
+const client = SwiftypeAppSearch.createClient({
+  hostIdentifier: "host-8ciykn",
+  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
+  engineName: "spotifynewreleasedalbums"
+});
+
+// We can query for anything -- `foo` is our example.
+const query = 'beyonc'
+const options = {};
+client.search(query, options)
+  .then(resultList => console.log(resultList.rawResults, "elasticsearch"))
+  .catch(error => console.log(error))
 
 export default App;
