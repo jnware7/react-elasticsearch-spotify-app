@@ -179,8 +179,7 @@ class App extends Component {
              elasticSearchRes ?
             </div>
             {/* Show the total count of results for this query */}
-        <h2>{elasticSearchRes.info.meta.page.total_results} Results</h2>
-        {/* Iterate over results, and show their Name and Description */}
+      
         {elasticSearchRes.results.map(result => (
           <div key={result.getRaw("id")}>
             <p>Released: {result.getRaw("Release_date")}</p>
