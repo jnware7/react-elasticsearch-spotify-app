@@ -40,6 +40,7 @@ class App extends Component {
 handelSubmit(e){
   console.log(e)
   e.preventDefault();
+  e.stopPropagation();
   const options = {};
 
   client.search(this.state.searchString, options)
