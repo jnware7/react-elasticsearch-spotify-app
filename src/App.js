@@ -42,10 +42,9 @@ handelSubmit(e){
   e.preventDefault();
   e.stopPropagation();
   const options = {
-      size: 3,
       types: {
        documents: {
-         fields: ['artists']
+         fields: ['title']
      }
    }
   };
