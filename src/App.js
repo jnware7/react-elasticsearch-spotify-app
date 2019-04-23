@@ -1,19 +1,14 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
 import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
-import SwiftypeApi from 'swiftype';
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
+import "./App.css";
 import hash from "./hash";
 import Card from "./Card";
 import Title from "./Title";
 import logo from "./logo.svg";
-import "./App.css";
 
 require('dotenv').config();
-
-const swiftype = new SwiftypeApi({
-  apiKey: "search-xunm9zq9kudg3dihhffgqv66"
-})
 
 const client = SwiftypeAppSearch.createClient({
   hostIdentifier: "host-8ciykn",
@@ -38,7 +33,6 @@ class App extends Component {
   }
   handleChangeSearch(e) {
   this.setState({searchString: e.target.value});
-
   // console.log(this.state.searchString)
   }
 handelSubmit(e){
@@ -50,25 +44,9 @@ handelSubmit(e){
   client.search(this.state.searchString, options)
     .then(resultList => {
       console.log(resultList, "elasticsearchresult");
-      suggestSearchTerm(this.state.searchString)
+
     })
     .catch(error => console.log(error))
-
-const suggestSearchTerm = (querystring) => {
-    swiftype.suggest({
-  engine: 'spotifynewreleasedalbums',
-  q: querystring,
-  filters: {
-    page: {
-      'enumField': 'theFilter'
-    }
-  }
-  }, function(err, res) {
-  console.log(res,"autocomplete")
-  })
-}
-
-
 }
 
 
