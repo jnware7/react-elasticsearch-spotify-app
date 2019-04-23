@@ -44,7 +44,7 @@ handelSubmit(e){
   const options = {};
 
   client.search(this.state.searchString, options)
-    .then(resultList => console.log(JSON.stringify(resultList), "elasticsearch"))
+    .then(resultList => console.log(JSON.stringify(resultList.external_urls), "elasticsearch"))
     .catch(error => console.log(error))
 
 }
