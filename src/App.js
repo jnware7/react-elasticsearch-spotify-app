@@ -127,10 +127,9 @@ handelSubmit(e){
           {this.state.token && (
             <React.Fragment>
             <Title title="New Album Releases" />
-            <form className="search-container">
+            <form className="search-container" type="submit" value="Submit" onSubmit={this.handelSubmit}>
               <input
                 type="text"
-                onSubmit={this.handelSubmit}
                 value={searchString}
                 ref="search"
                 onChange={this.handleChangeSearch}
