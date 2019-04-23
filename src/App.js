@@ -42,9 +42,10 @@ handelSubmit(e){
   e.preventDefault();
   e.stopPropagation();
   const options = {
+
       types: {
        documents: {
-         fields: ['artists','external_urls','release_date']
+         fields: ['text','date']
      }
    }
   };
