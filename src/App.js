@@ -41,10 +41,17 @@ handelSubmit(e){
   console.log(e)
   e.preventDefault();
   e.stopPropagation();
-  const options = {};
+  const options = {
+      size: 3,
+      types: {
+       documents: {
+         fields: ['artists']
+     }
+   }
+  };
 
   client.search(this.state.searchString, options)
-    .then(resultList => console.log(resultList[0].artists.raw[0], "elasticsearch"))
+    .then(resultList => console.log(resultList, "elasticsearch"))
     .catch(error => console.log(error))
 
 }
