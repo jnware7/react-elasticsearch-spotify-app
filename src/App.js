@@ -47,6 +47,18 @@ handelSubmit(e){
     .then(resultList => console.log(resultList, "elasticsearchresult"))
     .catch(error => console.log(error))
 
+    client.suggest({
+  engine: 'spotifynewreleasedalbums',
+  q: this.state.searchString,
+  filters: {
+    page: {
+      'enumField': 'theFilter'
+    }
+  }
+}, function(err, res) {
+  console.log(res,"autocomplete")
+})
+
 }
 
 
