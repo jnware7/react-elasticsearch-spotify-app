@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
-import hash from "./hash";
 import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
-
-var SwiftypeApi = require('swiftype')
-var swiftype = new SwiftypeApi({
-  apiKey: "search-xunm9zq9kudg3dihhffgqv66"
-})
-
-import "./App.css";
-
+import SwiftypeApi from 'swiftype';
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
+import hash from "./hash";
 import Card from "./Card";
 import Title from "./Title";
-
 import logo from "./logo.svg";
+import "./App.css";
+
 require('dotenv').config();
+
+const swiftype = new SwiftypeApi({
+  apiKey: "search-xunm9zq9kudg3dihhffgqv66"
+})
 
 const client = SwiftypeAppSearch.createClient({
   hostIdentifier: "host-8ciykn",
