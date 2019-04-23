@@ -30,24 +30,27 @@ class App extends Component {
     };
     this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
      this.handleChangeSearch = this.handleChangeSearch.bind(this);
+     this.handelSubmit = this.handelSubmit.bind(this);
   }
   handleChangeSearch(e) {
   this.setState({searchString: e.target.value});
 
   // console.log(this.state.searchString)
   }
-handleSubmit(e){
+handelSubmit(e){
+  const options = {};
+  
+  client.search(this.state.searchString, options)
+    .then(resultList => console.log(this.state.searchString, "check state"))
+    .then(resultList => console.log(resultList, "elasticsearch"))
+    .catch(error => console.log(error))
+
   e.preventDefault();
 }
 
 
   componentDidMount() {
 
-    const options = {};
-    console.log(this.state.searchString, check state)
-    client.search(this.state.searchString, options)
-      .then(resultList => console.log(resultList, "elasticsearch"))
-      .catch(error => console.log(error))
 
 
     // Set token
@@ -125,7 +128,7 @@ handleSubmit(e){
             <form className="search-container">
               <input
                 type="text"
-                onSubmit={handleSubmit}
+                onSubmit={this.handelSubmit}
                 value={searchString}
                 ref="search"
                 onChange={this.handleChangeSearch}
