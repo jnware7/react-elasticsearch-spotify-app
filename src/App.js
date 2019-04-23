@@ -44,7 +44,7 @@ handelSubmit(e){
   const options = {
       types: {
        documents: {
-         fields: ['title']
+         fields: ['artists','external_urls','release_date']
      }
    }
   };
