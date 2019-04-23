@@ -38,14 +38,14 @@ class App extends Component {
   // console.log(this.state.searchString)
   }
 handelSubmit(e){
+  e.preventDefault();
   const options = {};
-  
+
   client.search(this.state.searchString, options)
     .then(resultList => console.log(this.state.searchString, "check state"))
     .then(resultList => console.log(resultList, "elasticsearch"))
     .catch(error => console.log(error))
 
-  e.preventDefault();
 }
 
 
