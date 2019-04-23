@@ -44,15 +44,13 @@ handelSubmit(e){
   const options = {};
 
   client.search(this.state.searchString, options)
-    .then(resultList => console.log(resultList, "elasticsearch"))
+    .then(resultList => console.log(JSON.stringify(resultList), "elasticsearch"))
     .catch(error => console.log(error))
 
 }
 
 
   componentDidMount() {
-
-
 
     // Set token
     let _token = hash.access_token;
@@ -75,7 +73,7 @@ handelSubmit(e){
         xhr.setRequestHeader("Authorization", "Bearer " + token);
       },
       success: (data) => {
-         console.log("DATA", JSON.stringify(data.albums.items));
+         // console.log("DATA", JSON.stringify(data.albums.items));
 
         const arrayOfAlbums = data.albums.items;
         let arrayToState = [];
