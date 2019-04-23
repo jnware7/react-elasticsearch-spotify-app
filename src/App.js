@@ -44,20 +44,26 @@ handelSubmit(e){
   const options = {};
 
   client.search(this.state.searchString, options)
-    .then(resultList => console.log(resultList, "elasticsearchresult"))
+    .then(resultList => {
+      console.log(resultList, "elasticsearchresult");
+      suggestSearchTerm(this.state.searchString)
+    })
     .catch(error => console.log(error))
 
+const suggestSearchTerm = (querystring) => {
     client.suggest({
   engine: 'spotifynewreleasedalbums',
-  q: this.state.searchString,
+  q: querystring,
   filters: {
     page: {
       'enumField': 'theFilter'
     }
   }
-}, function(err, res) {
+  }, function(err, res) {
   console.log(res,"autocomplete")
-})
+  })
+}
+
 
 }
 
