@@ -38,6 +38,7 @@ class App extends Component {
   // console.log(this.state.searchString)
   }
 handelSubmit(e){
+  console.log(e)
   e.preventDefault();
   const options = {};
 
