@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import * as $ from "jquery";
 import hash from "./hash";
 import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
+
+var SwiftypeApi = require('swiftype')
+var swiftype = new SwiftypeApi({
+  apiKey: "search-xunm9zq9kudg3dihhffgqv66"
+})
+
 import "./App.css";
 
 import { authEndpoint, clientId, redirectUri, scopes } from "./config";
@@ -51,7 +57,7 @@ handelSubmit(e){
     .catch(error => console.log(error))
 
 const suggestSearchTerm = (querystring) => {
-    client.suggest({
+    swiftype.suggest({
   engine: 'spotifynewreleasedalbums',
   q: querystring,
   filters: {
