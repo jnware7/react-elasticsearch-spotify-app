@@ -41,14 +41,7 @@ handelSubmit(e){
   console.log(e)
   e.preventDefault();
   e.stopPropagation();
-  const options = {
-
-      types: {
-       documents: {
-         fields: ['text','date']
-     }
-   }
-  };
+  const options = {};
 
   client.search(this.state.searchString, options)
     .then(resultList => console.log(resultList, "elasticsearch"))
