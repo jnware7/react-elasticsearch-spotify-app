@@ -8,12 +8,16 @@ import Card from "./Card";
 import Title from "./Title";
 import logo from "./logo.svg";
 
+
+const HOST_IDENTIFIER = process.env.REACT_APP_HOST_IDENTIFIER;
+const SEARCH_KEY = process.env.REACT_APP_SEARCH_KEY;
+const ENGINENAM = process.env.REACT_APP_ENGINENAM;
 require('dotenv').config();
 
 const client = SwiftypeAppSearch.createClient({
-  hostIdentifier: process.env.REACT_APP_HOST_IDENTIFIER,
-  apiKey: process.env.REACT_APP_SEARCH_KEY,
-  engineName: process.env.REACT_APP_ENGINENAM
+  hostIdentifier: HOST_IDENTIFIER,
+  apiKey:SEARCH_KEY,
+  engineName:ENGINENAM
 });
 
 
