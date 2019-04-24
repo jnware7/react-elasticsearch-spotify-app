@@ -52,6 +52,7 @@ class App extends Component {
 
         client.search(this.state.searchString, options)
             .then(resultList => {
+                console.log(data,"data from spotify api")
                 console.log(resultList, "ElasticSearchResult : RawData");
 
             })
