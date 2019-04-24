@@ -1,107 +1,107 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
 import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
-import { authEndpoint, clientId, redirectUri, scopes } from "./config";
+import {
+    authEndpoint,
+    clientId,
+    redirectUri,
+    scopes,
+    client 
+    });
+} from "./config";
 import "./App.css";
 import hash from "./hash";
 import Card from "./Card";
 import Title from "./Title";
 import logo from "./logo.svg";
 
-
-const HOST_IDENTIFIER = process.env.REACT_APP_HOST_IDENTIFIER;
-const SEARCH_KEY = process.env.REACT_APP_SEARCH_KEY;
-const ENGINENAM = process.env.REACT_APP_ENGINENAM;
 require('dotenv').config();
 
-const client = SwiftypeAppSearch.createClient({
-  hostIdentifier: HOST_IDENTIFIER,
-  apiKey:SEARCH_KEY,
-  engineName:ENGINENAM
-});
-
+// const HOST_IDENTIFIER = process.env.REACT_APP_HOST_IDENTIFIER;
+// const SEARCH_KEY = process.env.REACT_APP_SEARCH_KEY;
+// const ENGINENAM = process.env.REACT_APP_ENGINENAM;
 
 
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      token: null,
-      albums:[],
-      searchString: '',
-    };
-    this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
-     this.handleChangeSearch = this.handleChangeSearch.bind(this);
-     this.handelSubmit = this.handelSubmit.bind(this);
-  }
-  handleChangeSearch(e) {
-  this.setState({searchString: e.target.value});
-  // console.log(this.state.searchString)
-  }
-handelSubmit(e){
-  console.log(e)
-  e.preventDefault();
-  e.stopPropagation();
-  const options = {};
-
-  client.search(this.state.searchString, options)
-    .then(resultList => {
-      console.log(resultList, "elasticsearchresult");
-
-    })
-    .catch(error => console.log(error))
-}
-
-
-  componentDidMount() {
-
-    // Set token
-    let _token = hash.access_token;
-
-    if (_token) {
-      // Set token
-      this.setState({
-        token: _token
-      });
-      this.getCurrentlyPlaying(_token);
+    constructor() {
+        super();
+        this.state = {
+            token: null,
+            albums: [],
+            searchString: '',
+        };
+        this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
+        this.handleChangeSearch = this.handleChangeSearch.bind(this);
+        this.handelSubmit = this.handelSubmit.bind(this);
     }
-  }
+    handleChangeSearch(e) {
+        this.setState({
+            searchString: e.target.value
+        });
+    }
+    handelSubmit(e) {
+        console.log(e)
+        e.preventDefault();
+        e.stopPropagation();
+        const options = {};
 
-  getCurrentlyPlaying(token) {
-    // Make a call using the token
-    $.ajax({
-      url: "https://api.spotify.com/v1/browse/new-releases",
-      type: "GET",
-      beforeSend: (xhr) => {
-        xhr.setRequestHeader("Authorization", "Bearer " + token);
-      },
-      success: (data) => {
-         // console.log("DATA", JSON.stringify(data.albums.items));
+        client.search(this.state.searchString, options)
+            .then(resultList => {
+                console.log(resultList, "ElasticSearchResult : RawData");
 
-        const arrayOfAlbums = data.albums.items;
-        let arrayToState = [];
-        arrayOfAlbums.forEach( album => {
-          let albumObj = {};
-          albumObj.name = album.name;
-          albumObj.artist = album.artists[0].name;
-          albumObj.img = album.images[1].url;
-          arrayToState.push(albumObj);
-        })
-
-        // console.log(arrayToState);
-
-        const name = data.albums.items[0].name;
-        const artist = data.albums.items[0].artists[0].name;
-        const img = data.albums.items[0].images[1].url;
+            })
+            .catch(error => console.log(error))
+    }
 
 
-         this.setState({albums: arrayToState });
-      }
-    });
-  }
+    componentDidMount() {
+
+        // Set token
+        let _token = hash.access_token;
+
+        if (_token) {
+            // Set token
+            this.setState({
+                token: _token
+            });
+            this.getCurrentlyPlaying(_token);
+        }
+    }
+
+    getCurrentlyPlaying(token) {
+        // Make a call using the token
+        $.ajax({
+            url: "https://api.spotify.com/v1/browse/new-releases",
+            type: "GET",
+            beforeSend: (xhr) => {
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            },
+            success: (data) => {
+                console.log("GET to request to https://api.spotify.com/v1/browse/new-releases was succesful.");
+
+                const arrayOfAlbums = data.albums.items;
+                let arrayToState = [];
+                arrayOfAlbums.forEach(album => {
+                    let albumObj = {};
+                    albumObj.name = album.name;
+                    albumObj.artist = album.artists[0].name;
+                    albumObj.img = album.images[1].url;
+                    arrayToState.push(albumObj);
+                })
 
 
+                const name = data.albums.items[0].name;
+                const artist = data.albums.items[0].artists[0].name;
+                const img = data.albums.items[0].images[1].url;
+
+
+                this.setState({
+                    albums: arrayToState
+                });
+            }
+        });
+    }
 
   render() {
     const {albums, searchString} = this.state;
@@ -111,9 +111,7 @@ handelSubmit(e){
         return key.toLowerCase().includes(lowerCasedSearchString);
       })
     })
-    // console.log("filteredData==>",filteredData)
-    // console.log("album[ key ]",album[key])
-    // console.log("lowerCasedSearchString",lowerCasedSearchString)
+
     return (
       <div className="App">
         <header className="App-header">
