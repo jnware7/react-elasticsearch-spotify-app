@@ -11,9 +11,9 @@ import logo from "./logo.svg";
 require('dotenv').config();
 
 const client = SwiftypeAppSearch.createClient({
-  hostIdentifier: "host-8ciykn",
-  apiKey: "search-xunm9zq9kudg3dihhffgqv66",
-  engineName: "spotifynewreleasedalbums"
+  hostIdentifier: process.env.REACT_APP_HOST_IDENTIFIER,
+  apiKey: process.env.REACT_APP_SEARCH_KEY,
+  engineName: process.env.REACT_APP_ENGINENAM
 });
 
 
