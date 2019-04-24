@@ -2,15 +2,6 @@
   text-align: center;
   font-family: 'Quicksand', sans-serif;
 }
-input{
-  border-radius: 15px;
-  width: 100%;
-  margin-bottom:3%;
-  height: 25px;
-}
-search-container{
-width: 100%;
-}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 20vmin;
@@ -31,12 +22,19 @@ width: 100%;
 .App-link {
   color: #61dafb;
 }
+input{
+  border-radius: 15px;
+  width: 100%;
+  margin-bottom:3%;
+  height: 25px;
+}
+search-container{
+width: 100%;
+}
 .spotify-btn{
   font-family: 'Quicksand', sans-serif;
   color:white;
 }
-
-
 
 @keyframes App-logo-spin {
   from {

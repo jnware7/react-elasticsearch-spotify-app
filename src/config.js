@@ -13,9 +13,3 @@ export const scopes = [
     "user-read-currently-playing",
     "user-read-playback-state",
 ];
-
-export const client = SwiftypeAppSearch.createClient({
-    hostIdentifier: "host-8ciykn",
-    apiKey: "search-xunm9zq9kudg3dihhffgqv66",
-    engineName: "spotifynewreleasedalbums"
-});

@@ -5,9 +5,7 @@ import {
     authEndpoint,
     clientId,
     redirectUri,
-    scopes,
-    client 
-    });
+    scopes
 } from "./config";
 import "./App.css";
 import hash from "./hash";
@@ -21,6 +19,12 @@ require('dotenv').config();
 // const SEARCH_KEY = process.env.REACT_APP_SEARCH_KEY;
 // const ENGINENAM = process.env.REACT_APP_ENGINENAM;
 
+
+const client = SwiftypeAppSearch.createClient({
+    hostIdentifier: "host-8ciykn",
+    apiKey: "search-xunm9zq9kudg3dihhffgqv66",
+    engineName: "spotifynewreleasedalbums"
+});
 
 
 class App extends Component {
