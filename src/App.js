@@ -110,7 +110,7 @@ class App extends Component {
     }
 
   render() {
-    const {albums, searchString, resultList} = this.state;
+    const {albums, searchString, resultList } = this.state;
     const lowerCasedSearchString = searchString.toLowerCase();
     const filteredData = albums.filter( album => {
       return Object.values(album).some( key => {
@@ -167,20 +167,23 @@ class App extends Component {
             }
 
             </div>
-              !resultList ? return null :
-              <h2>{resultList.info.meta.page.total_results} Elastic Results</h2>
-        {resultList.results.map(result => (
-          <div key={result.getRaw("id")}>
-            <p>Name: {result.getRaw("name")}</p>
-            <p>Description: {result.getRaw("description")}</p>
-            <br />
-          </div>
-
-
             </React.Fragment>
           )}
         </header>
+
       </div>
+      {
+          !resultList ? return null :
+          <div className= "App-header">
+            <h2>{resultList.info.meta.page.total_results} Elastic Results</h2>
+            {resultList.results.map(result => (
+              <div key={result.getRaw("id")}>
+                <p>Name: {result.getRaw("name")}</p>
+                <p>Description: {result.getRaw("description")}</p>
+                <br />
+         </div>
+      }
+
     );
   }
 }
