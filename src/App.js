@@ -83,8 +83,6 @@ class App extends Component {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
             success: (data) => {
-              let document = data.albums.items;
-                client.indexDocuments("spotifynewreleasedalbums", [document]);
                 console.log("GET to request to https://api.spotify.com/v1/browse/new-releases was succesful.");
                 console.log(data,"spotify data");
                 const arrayOfAlbums = data.albums.items;
@@ -96,12 +94,6 @@ class App extends Component {
                     albumObj.img = album.images[1].url;
                     arrayToState.push(albumObj);
                 })
-
-
-                const name = data.albums.items[0].name;
-                const artist = data.albums.items[0].artists[0].name;
-                const img = data.albums.items[0].images[1].url;
-
 
                 this.setState({
                     albums: arrayToState
