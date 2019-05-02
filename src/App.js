@@ -169,20 +169,19 @@ class App extends Component {
             </div>
             </React.Fragment>
           )}
-        </header>
 
+        </header>
+        <h2>{response.info.meta.page.total_results} Results</h2>
+
+    {response.results.map(result => (
+      <div key={result.getRaw("id")}>
+        <p>Name: {result.getRaw("name")}</p>
+        <p>Description: {result.getRaw("description")}</p>
+        <br />
       </div>
-      {
-          !resultList ? return null :
-          <div className= "App-header">
-            <h2>{resultList.info.meta.page.total_results} Elastic Results</h2>
-            {resultList.results.map(result => (
-              <div key={result.getRaw("id")}>
-                <p>Name: {result.getRaw("name")}</p>
-                <p>Description: {result.getRaw("description")}</p>
-                <br />
-         </div>
-      }
+    }
+
+    
 
     );
   }
