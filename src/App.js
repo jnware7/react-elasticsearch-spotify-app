@@ -84,7 +84,7 @@ class App extends Component {
             },
             success: (data) => {
                 console.log("GET to request to https://api.spotify.com/v1/browse/new-releases was succesful.");
-                console.dir(JSON.pasrse(JSON.stringify(data)),"spotify data");
+                console.dir(data.albums.items,"spotify data");
                 const arrayOfAlbums = data.albums.items;
                 let arrayToState = [];
                 arrayOfAlbums.forEach(album => {
