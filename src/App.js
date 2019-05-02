@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as $ from "jquery";
 import * as SwiftypeAppSearch from "swiftype-app-search-javascript";
-const client = new SwiftypeAppSearchClient("host-8ciykn, private-xunm9zq9kudg3dihhffgqv66");
+const client2 = new SwiftypeAppSearchClient("host-8ciykn, private-xunm9zq9kudg3dihhffgqv66");
 import {
     authEndpoint,
     clientId,
@@ -83,7 +83,7 @@ class App extends Component {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
             success: (data) => {
-                client.indexDocuments(engineName, data.albums.items)
+                client2.indexDocuments(engineName, [data.albums.items])
                 console.log("GET to request to https://api.spotify.com/v1/browse/new-releases was succesful.");
                 console.log(data,"spotify data");
                 const arrayOfAlbums = data.albums.items;
