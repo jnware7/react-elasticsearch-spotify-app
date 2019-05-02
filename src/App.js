@@ -153,20 +153,7 @@ class App extends Component {
                   />
 
                 ))
-              )
-              {
-                !resultList ? null :
-            <h2>{resultList.length} Results </h2>
-
-              (  resultList.map(result => (
-          <div key={result.data.id.raw}>
-            <p>Name: {result.data.name.raw}</p>
-            <p>Description: {result.data.release_date.raw}</p>
-            <br />
-          </div>
-                ))
-              )
-
+              ) 
 
               : (
                 albums.map( (album, key)=> (
