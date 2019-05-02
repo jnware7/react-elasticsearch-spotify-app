@@ -154,9 +154,9 @@ class App extends Component {
 
                 ))
               )
-
-
-            
+              {
+                !resultList ? null :
+            <h2>{resultList.length} Results </h2>
 
               (  resultList.map(result => (
           <div key={result.data.id.raw}>
