@@ -174,15 +174,15 @@ class App extends Component {
             <h2>{resultList.length} Results</h2>
 
               (  resultList.map(result => (
-          <div key={result.getRaw("id")}>
-            <p>Name: {result.getRaw("name")}</p>
-            <p>Description: {result.getRaw("description")}</p>
+          <div key={result.data.id.raw}>
+            <p>Name: {result.data.name.raw}</p>
+            <p>Description: {result.data.release_date.raw}</p>
             <br />
           </div>
                 ))
               )
             }
-            
+
         </header>
       </div>
     );
