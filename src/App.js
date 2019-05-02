@@ -170,7 +170,19 @@ class App extends Component {
             </React.Fragment>
           )}
 
+              {!resultList ? null :
+            <h2>{resultList.length} Results</h2>
 
+              (  resultList.map(result => (
+          <div key={result.getRaw("id")}>
+            <p>Name: {result.getRaw("name")}</p>
+            <p>Description: {result.getRaw("description")}</p>
+            <br />
+          </div>
+                ))
+              )
+            }
+            
         </header>
       </div>
     );
