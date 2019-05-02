@@ -54,7 +54,7 @@ class App extends Component {
         client.search(this.state.searchString, options)
             .then(resultList => {
 
-                console.log(resultList.albums, "ElasticSearchResult : RawData");
+                console.log(resultList, "ElasticSearchResult : RawData");
 
             })
             .catch(error => console.log(error))
