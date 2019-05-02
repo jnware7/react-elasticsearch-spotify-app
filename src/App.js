@@ -153,7 +153,22 @@ class App extends Component {
                   />
 
                 ))
-              ) : (
+              )
+
+
+            
+
+              (  resultList.map(result => (
+          <div key={result.data.id.raw}>
+            <p>Name: {result.data.name.raw}</p>
+            <p>Description: {result.data.release_date.raw}</p>
+            <br />
+          </div>
+                ))
+              )
+
+
+              : (
                 albums.map( (album, key)=> (
                   <Card
                     key={album.name}
@@ -169,20 +184,6 @@ class App extends Component {
             </div>
             </React.Fragment>
           )}
-
-              {!resultList ? null :
-            <h2>{resultList.length} Results</h2>
-
-              (  resultList.map(result => (
-          <div key={result.data.id.raw}>
-            <p>Name: {result.data.name.raw}</p>
-            <p>Description: {result.data.release_date.raw}</p>
-            <br />
-          </div>
-                ))
-              )
-            }
-
         </header>
       </div>
     );
