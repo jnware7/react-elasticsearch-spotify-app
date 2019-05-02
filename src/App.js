@@ -169,19 +169,19 @@ class App extends Component {
             </div>
             </React.Fragment>
           )}
+        <h2>{resultList.info.meta.page.total_results} Results</h2>
 
-        </header>
-        <h2>{response.info.meta.page.total_results} Results</h2>
-
-    {response.results.map(result => (
+          <React.Fragment>
+          {resultList.results.map(result => (
       <div key={result.getRaw("id")}>
         <p>Name: {result.getRaw("name")}</p>
         <p>Description: {result.getRaw("description")}</p>
         <br />
       </div>
-    }
-
-    
+      )  
+        }
+          </React.Fragment>
+      </div>
 
     );
   }
