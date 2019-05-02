@@ -129,6 +129,7 @@ class App extends Component {
               <h1 className="spotify-btn"> <b>Login to Spotify</b> </h1>
             </a>
           )}
+          </div>
           {this.state.token && (
             <React.Fragment>
             <Title title="New Album Releases" />
@@ -181,7 +182,7 @@ class App extends Component {
             ))
           )
         }
-      </div>
+
 
     );
   }
