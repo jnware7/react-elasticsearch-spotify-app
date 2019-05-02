@@ -59,7 +59,7 @@ class App extends Component {
 
                 console.log(resultList, "ElasticSearchResult : RawData");
                 this.setState({
-                  resultList
+                  resultList : resultList.results
                 })
 
             })
@@ -170,20 +170,8 @@ class App extends Component {
             </React.Fragment>
           )}
 
-          {!resultList ? null :
-        <h2>{resultList.info.meta.page.total_results} Results</h2>
 
-          (  resultList.results.map(result => (
-      <div key={result.getRaw("id")}>
-        <p>Name: {result.getRaw("name")}</p>
-        <p>Description: {result.getRaw("description")}</p>
-        <br />
-      </div>
-            ))
-          )
-        }
-
-        </header>  
+        </header>
       </div>
     );
   }
