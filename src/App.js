@@ -35,11 +35,14 @@ class App extends Component {
             token: null,
             albums: [],
             searchString: '',
+            resultList: null
         };
         this.getCurrentlyPlaying = this.getCurrentlyPlaying.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
         this.handelSubmit = this.handelSubmit.bind(this);
     }
+
+
     handleChangeSearch(e) {
         this.setState({
             searchString: e.target.value
@@ -51,10 +54,13 @@ class App extends Component {
         e.stopPropagation();
         const options = {};
 
-        client.search(this.state.searchString, options)
+        client.search(this.state.searchString, {})
             .then(resultList => {
 
                 console.log(resultList, "ElasticSearchResult : RawData");
+                this.setState({
+                  resultList
+                })
 
             })
             .catch(error => console.log(error))
@@ -104,7 +110,7 @@ class App extends Component {
     }
 
   render() {
-    const {albums, searchString} = this.state;
+    const {albums, searchString, resultList} = this.state;
     const lowerCasedSearchString = searchString.toLowerCase();
     const filteredData = albums.filter( album => {
       return Object.values(album).some( key => {
@@ -161,6 +167,16 @@ class App extends Component {
             }
 
             </div>
+              !resultList ? return null :
+              <h2>{resultList.info.meta.page.total_results} Elastic Results</h2>
+        {resultList.results.map(result => (
+          <div key={result.getRaw("id")}>
+            <p>Name: {result.getRaw("name")}</p>
+            <p>Description: {result.getRaw("description")}</p>
+            <br />
+          </div>
+
+
             </React.Fragment>
           )}
         </header>
