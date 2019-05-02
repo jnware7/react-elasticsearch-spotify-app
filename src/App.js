@@ -172,7 +172,6 @@ class App extends Component {
           {!resultList ? null :
         <h2>{resultList.info.meta.page.total_results} Results</h2>
 
-          <React.Fragment>
             resultList.results.map(result => (
       <div key={result.getRaw("id")}>
         <p>Name: {result.getRaw("name")}</p>
@@ -181,7 +180,6 @@ class App extends Component {
       </div>
       )
         }
-          </React.Fragment>
       </div>
 
     );
